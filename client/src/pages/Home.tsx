@@ -69,7 +69,7 @@ export default function Home() {
           </div>
           <div>
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">HPy - Analyseur de course</h1>
-            <p className="text-sm md:text-base text-muted-foreground">Outil de performance pour Virtual Regatta Pro</p>
+            <p className="text-sm md:text-base text-muted-foreground">Outil d'analyse pour Virtual Regatta</p>
           </div>
         </header>
 
