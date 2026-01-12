@@ -27,6 +27,7 @@ export type AnalysisStats = {
   gybeTackCount: number;
   percentFoils100: number;
   totalFoilTimeSaved: string; // HH:MM
+  totalDistGain: number;
   paidSailStats: SailStats[];
 };
 
