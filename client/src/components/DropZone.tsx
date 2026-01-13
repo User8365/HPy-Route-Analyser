@@ -18,8 +18,12 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
+    // Configuration ultra-compatible pour iPhone
     accept: {
       'application/gpx+xml': ['.gpx'],
+      'text/xml': ['.gpx'],
+      'application/xml': ['.gpx'],
+      'application/octet-stream': ['.gpx'] 
     },
     multiple: false,
     disabled: isLoading,
