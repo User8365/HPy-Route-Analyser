@@ -35,7 +35,7 @@ export default function Home() {
         toast({ title: "Analyse terminée", description: "Le fichier GPX a été traité avec succès." });
       } catch (error) {
         console.error("Erreur d'analyse:", error);
-        toast({ variant: "destructive", title: "Échec", description: "Impossible d'analyser le fichier." });
+        toast({ variant: "destructive", title: "Échec", description: "Impossible d'analyser le fichier. Assurez-vous que le fichier est bien de type GPX et qu'il est bien issu de VRzen" });
       } finally {
         setIsLoading(false);
       }
@@ -231,8 +231,8 @@ export default function Home() {
             <RouteTable points={data.points} />
 
             <footer className="pt-8 pb-4 border-t border-white/5">
-              <p className="text-center text-[10px] md:text-xs text-muted-foreground/60 italic">
-                Outil optimisé pour les fichiers GPX issus de VRzen. La précision des calculs dépend de la structure du fichier.
+              <p className="text-center text-[15px] md:text-xs text-muted-foreground/60 italic">
+                Outil optimisé pour les fichiers GPX issus de VRzen ! Outil développé par l'équipe HPy Team.
               </p>
             </footer>
           </motion.div>

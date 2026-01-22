@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, FileUp, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,9 +10,30 @@ interface DropZoneProps {
 }
 
 export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
+  const [isIOS, setIsIOS] = useState(false);
+  
+  // Detect iOS on mount
+  useEffect(() => {
+    setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent));
+  }, []);
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
-      onFileSelect(acceptedFiles[0]);
+      const file = acceptedFiles[0];
+      // Additional validation for iOS - check file extension
+      if (file.name.toLowerCase().endsWith('.gpx')) {
+        onFileSelect(file);
+      }
+    }
+  }, [onFileSelect]);
+
+  const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      if (file.name.toLowerCase().endsWith('.gpx')) {
+        onFileSelect(file);
+      }
     }
   }, [onFileSelect]);
 
@@ -20,9 +41,15 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
     onDrop,
     accept: {
       'application/gpx+xml': ['.gpx'],
+      'application/xml': ['.gpx'],
+      'text/xml': ['.gpx'],
+      'text/plain': ['.gpx'],
     },
     multiple: false,
     disabled: isLoading,
+    // iOS specific fixes
+    noClick: false,
+    noKeyboard: false,
   });
 
   return (
@@ -37,7 +64,19 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
         isLoading && "opacity-50 cursor-not-allowed pointer-events-none"
       )}
     >
-      <input {...getInputProps()} />
+      {/* iOS fallback input */}
+      {isIOS && (
+        <input
+          type="file"
+          accept=".gpx,application/gpx+xml,application/xml,text/xml,text/plain"
+          onChange={handleFileChange}
+          disabled={isLoading}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        />
+      )}
+      
+      {/* Standard react-dropzone input for non-iOS */}
+      {!isIOS && <input {...getInputProps()} />}
       
       <AnimatePresence mode="wait">
         {isLoading ? (
