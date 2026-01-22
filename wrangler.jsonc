@@ -1,0 +1,28 @@
+{
+  "name": "hpy-route-analyser",
+  "compatibility_date": "2026-01-22",
+  "type": "javascript",
+  
+  // Configuration des assets statiques
+  "assets": {
+    "directory": "./dist"
+  },
+  
+  // Build command (déjà défini dans ton package.json)
+  "build": {
+    "command": "npm run build"
+  },
+  
+  // Env de production
+  "env": {
+    "production": {
+      "name": "hpy-route-analyser-prod",
+      "routes": [
+        {
+          "pattern": "*",
+          "zone_id": ""
+        }
+      ]
+    }
+  }
+}
