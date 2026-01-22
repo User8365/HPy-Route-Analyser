@@ -41,9 +41,6 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
     onDrop,
     accept: {
       'application/gpx+xml': ['.gpx'],
-      'application/xml': ['.gpx'],
-      'text/xml': ['.gpx'],
-      'text/plain': ['.gpx'],
     },
     multiple: false,
     disabled: isLoading,
@@ -68,7 +65,7 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
       {isIOS && (
         <input
           type="file"
-          accept=".gpx,application/gpx+xml,application/xml,text/xml,text/plain"
+          accept=".gpx"
           onChange={handleFileChange}
           disabled={isLoading}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
