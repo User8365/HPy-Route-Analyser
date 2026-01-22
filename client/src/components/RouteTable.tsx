@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { 
   Table, 
@@ -9,7 +10,7 @@ import {
   TableRow 
 } from "@/components/ui/table";
 import { type RoutePoint } from "@shared/schema";
-import { Activity } from "lucide-react";
+import { Activity, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface RouteTableProps {
@@ -17,6 +18,10 @@ interface RouteTableProps {
 }
 
 export function RouteTable({ points }: RouteTableProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  const displayPoints = isExpanded ? points : points.slice(0, 5);
+  const hasMorePoints = points.length > 5;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -41,7 +46,7 @@ export function RouteTable({ points }: RouteTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {points.map((point, index) => (
+            {displayPoints.map((point, index) => (
               <TableRow 
                 key={index} 
                 className={cn(
@@ -73,6 +78,27 @@ export function RouteTable({ points }: RouteTableProps) {
             ))}
           </TableBody>
         </Table>
+        
+        {hasMorePoints && (
+          <div className="border-t border-white/5 p-4">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm text-muted-foreground hover:text-foreground border border-white/10"
+            >
+              {isExpanded ? (
+                <>
+                  <ChevronUp className="w-4 h-4" />
+                  Afficher moins
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4" />
+                  Afficher plus ({points.length - 5} lignes supplémentaires)
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </motion.div>
   );
