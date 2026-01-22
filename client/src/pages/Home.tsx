@@ -146,7 +146,7 @@ export default function Home() {
                       </TableHeader>
                       <TableBody>
                         {data.stats.paidSailStats.map((sail: any, i) => {
-                          const categoryColor = i < 2 ? "border-l-[#00f2ff]" : i < 4 ? "border-l-[#ff00ff]" : "border-l-[#3b82f6]";
+                          const categoryColor = sail.name === "Code 0" ? "border-l-[#fbbf24]" : i < 2 ? "border-l-[#00f2ff]" : i < 4 ? "border-l-[#ff00ff]" : "border-l-[#3b82f6]";
                           return (
                             <TableRow 
                               key={i} 
