@@ -147,7 +147,16 @@ export default function Home() {
                       <TableBody>
                         {data.stats.paidSailStats.map((sail: any, i) => {
                           const isCode0 = sail.name && sail.name.trim().toLowerCase() === "code 0";
-                          const categoryColor = isCode0 ? "border-l-[#fbbf24]" : i < 2 ? "border-l-[#00f2ff]" : i < 4 ? "border-l-[#ff00ff]" : "border-l-[#3b82f6]";
+                          let categoryColor;
+                          if (isCode0) {
+                            categoryColor = "border-l-[#fbbf24]";
+                          } else if (i < 2) {
+                            categoryColor = "border-l-[#00f2ff]";
+                          } else if (i < 4) {
+                            categoryColor = "border-l-[#ff00ff]";
+                          } else {
+                            categoryColor = "border-l-[#3b82f6]";
+                          }
                           console.log(`Sail: "${sail.name}", isCode0: ${isCode0}, color: ${categoryColor}`);
                           return (
                             <TableRow 
