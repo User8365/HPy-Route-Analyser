@@ -11,18 +11,40 @@ interface DropZoneProps {
 
 export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
   const [isIOS, setIsIOS] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   // Detect iOS on mount
   useEffect(() => {
     setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent));
   }, []);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  // Auto-clear error after 5 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+  const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {
+    // Clear previous error
+    setError(null);
+    
+    // Handle rejected files (wrong type)
+    if (rejectedFiles && rejectedFiles.length > 0) {
+      setError("Erreur : veuillez selectionner un fichier GPX issu de VRzen !");
+      return;
+    }
+    
     if (acceptedFiles.length > 0) {
       const file = acceptedFiles[0];
       // Additional validation for iOS - check file extension
       if (file.name.toLowerCase().endsWith('.gpx')) {
         onFileSelect(file);
+      } else {
+        setError("Erreur : veuillez selectionner un fichier GPX issu de VRzen !");
       }
     }
   }, [onFileSelect]);
@@ -31,8 +53,11 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
     const files = event.target.files;
     if (files && files.length > 0) {
       const file = files[0];
+      setError(null);
       if (file.name.toLowerCase().endsWith('.gpx')) {
         onFileSelect(file);
+      } else {
+        setError("Erreur : veuillez selectionner un fichier GPX issu de VRzen !");
       }
     }
   }, [onFileSelect]);
@@ -111,6 +136,20 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
                 Supporte les export VRzen.
               </p>
             </div>
+            
+            {/* Error message */}
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="w-full p-3 bg-red-500/10 border border-red-500/30 rounded-lg"
+                >
+                  <p className="text-sm text-red-400 text-center">{error}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <div className="pt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground/60">
               <span className="px-2 py-1 rounded border border-white/5 bg-white/[0.02]">GPX ONLY</span>
               <span className="px-2 py-1 rounded border border-white/5 bg-white/[0.02]">MAX 10MB</span>
