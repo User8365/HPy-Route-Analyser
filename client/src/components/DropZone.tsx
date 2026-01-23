@@ -133,7 +133,7 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
                 {isDragActive ? "Déposez le fichier" : "Déposez votre fichier GPX ici ou Cliquez sur Parcourir"}
               </p>
               <p className="text-sm text-muted-foreground max-w-xs mx-auto">
-                Supporte les export VRzen.
+                Supporte les exports VRzen.
               </p>
             </div>
             
