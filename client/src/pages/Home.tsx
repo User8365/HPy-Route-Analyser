@@ -242,8 +242,8 @@ export default function Home() {
             <RouteTable points={data.points} />
 
             <footer className="pt-8 pb-4 border-t border-white/5">
-              <p className="text-center text-[30px] md:text-xs text-muted-foreground/60 italic">
-                Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team.
+              <p className="text-center text-[15px] md:text-xs text-muted-foreground/60 italic">
+                Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact : Discord HPy ou team.hpy.vr@gmail.com
               </p>
             </footer>
           </motion.div>
