@@ -252,6 +252,18 @@ export default function Home() {
             Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact : Discord HPy ou team.hpy.vr@gmail.com
           </p>
         </footer>
+
+        {data.stats && (
+          <div className="flex justify-center pb-8">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="w-20 h-20 sm:w-24 sm:h-24 max-w-[150px] rounded-2xl overflow-hidden border-2 border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:border-[#00f2ff]/50 transition-all duration-300 hover:scale-105"
+              title="Retour en haut de page"
+            >
+              <img src={hpyLogo} alt="HPy Team Logo - Retour en haut" className="w-full h-full object-cover" />
+            </button>
+          </div>
+        )}
       </main>
     </div>
   );
