@@ -249,7 +249,13 @@ export default function Home() {
 
         <footer className="pt-8 pb-4 border-t border-white/5">
           <p className="text-center text-[15px] md:text-xs text-muted-foreground/60 italic">
-            Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact : Discord HPy ou team.hpy.vr@gmail.com
+            Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact : Discord HPy ou{" "}
+            <a 
+              href="mailto:team.hpy.vr@gmail.com" 
+              className="text-[#00f2ff] hover:text-[#00f2ff]/80 transition-colors underline decoration-[#00f2ff]/50 hover:decoration-[#00f2ff]/80"
+            >
+              team.hpy.vr@gmail.com
+            </a>
           </p>
         </footer>
 
