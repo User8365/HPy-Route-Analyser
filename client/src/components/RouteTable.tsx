@@ -34,17 +34,18 @@ export function RouteTable({ points }: RouteTableProps) {
       </div>
 
       <div className="rounded-xl border border-white/5 bg-[#0d1526]/80 overflow-hidden shadow-2xl">
-        <Table>
-          <TableHeader className="bg-white/[0.02]">
-            <TableRow className="border-white/5 hover:bg-transparent">
-              <TableHead className="text-muted-foreground font-semibold">HDG</TableHead>
-              <TableHead className="text-muted-foreground font-semibold">TWA</TableHead>
-              <TableHead className="text-muted-foreground font-semibold">Voile</TableHead>
-              <TableHead className="text-muted-foreground font-semibold">SOG</TableHead>
-              <TableHead className="text-muted-foreground font-semibold">Statut Foils</TableHead>
-              <TableHead className="text-right text-muted-foreground font-semibold">TWS</TableHead>
-            </TableRow>
-          </TableHeader>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader className="bg-white/[0.02]">
+              <TableRow className="border-white/5 hover:bg-transparent">
+                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">HDG</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">TWA</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">Voile</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">SOG</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">Statut Foils</TableHead>
+                <TableHead className="text-right text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">TWS</TableHead>
+              </TableRow>
+            </TableHeader>
           <TableBody>
             {displayPoints.map((point, index) => (
               <TableRow 
@@ -54,36 +55,37 @@ export function RouteTable({ points }: RouteTableProps) {
                   point.isFoils100 && "bg-[#00f2ff]/5 border-l-2 border-l-[#00f2ff]"
                 )}
               >
-                <TableCell className="font-medium text-foreground">{point.hdg}°</TableCell>
-                <TableCell className={parseInt(point.twa) < 0 ? "text-[#ff00ff]" : "text-[#00f2ff]"}>
+                <TableCell className="font-medium text-foreground text-xs sm:text-sm whitespace-nowrap">{point.hdg}°</TableCell>
+                <TableCell className={cn("text-xs sm:text-sm whitespace-nowrap", parseInt(point.twa) < 0 ? "text-[#ff00ff]" : "text-[#00f2ff]")}>
                   {point.twa}°
                 </TableCell>
-                <TableCell>
-                  <span className="px-2 py-1 rounded-md bg-white/5 text-[10px] text-muted-foreground border border-white/10 uppercase tracking-wider">
+                <TableCell className="text-xs sm:text-sm whitespace-nowrap">
+                  <span className="px-1 sm:px-2 py-0.5 sm:py-1 rounded-md bg-white/5 text-[9px] sm:text-[10px] text-muted-foreground border border-white/10 uppercase tracking-wider">
                     {point.sail}
                   </span>
                 </TableCell>
-                <TableCell className="text-[#3b82f6] font-bold">{point.sog} kt</TableCell>
-                <TableCell>
+                <TableCell className="text-[#3b82f6] font-bold text-xs sm:text-sm whitespace-nowrap">{point.sog} kt</TableCell>
+                <TableCell className="text-xs sm:text-sm whitespace-nowrap">
                   {point.isFoils100 ? (
-                    <span className="text-[#00f2ff] flex items-center gap-1 font-bold">🚀 100%</span>
+                    <span className="text-[#00f2ff] flex items-center gap-1 font-bold text-xs sm:text-sm">🚀 100%</span>
                   ) : point.isFoilsActive ? (
-                    <span className="text-[#3b82f6] flex items-center gap-1">✅ Actif</span>
+                    <span className="text-[#3b82f6] flex items-center gap-1 text-xs sm:text-sm">✅ Actif</span>
                   ) : (
-                    <span className="text-muted-foreground/50 flex items-center gap-1 italic text-xs">❌ Inactif</span>
+                    <span className="text-muted-foreground/50 flex items-center gap-1 italic text-[10px] sm:text-xs">❌ Inactif</span>
                   )}
                 </TableCell>
-                <TableCell className="text-right text-muted-foreground">{point.tws} kt</TableCell>
+                <TableCell className="text-right text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{point.tws} kt</TableCell>
               </TableRow>
             ))}
           </TableBody>
-        </Table>
+          </Table>
+        </div>
         
         {hasMorePoints && (
-          <div className="border-t border-white/5 p-4">
+          <div className="border-t border-white/5 p-3 sm:p-4">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm text-muted-foreground hover:text-foreground border border-white/10"
+              className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-xs sm:text-sm text-muted-foreground hover:text-foreground border border-white/10"
             >
               {isExpanded ? (
                 <>
@@ -93,7 +95,7 @@ export function RouteTable({ points }: RouteTableProps) {
               ) : (
                 <>
                   <ChevronDown className="w-4 h-4" />
-                  Afficher plus ({points.length - 5} lignes supplémentaires)
+                  Afficher plus ({points.length - 5} lignes)
                 </>
               )}
             </button>
