@@ -87,15 +87,15 @@ export default function Home() {
 
         {data.stats && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8 md:mt-12 space-y-8 md:space-y-12">
-            <div className="flex flex-wrap gap-4 md:gap-6">
-              <Card className="flex-1 min-w-[200px] bg-[#0d1526]/80 border-[#00f2ff]/10 shadow-[0_0_15px_rgba(0,242,255,0.05)]">
+            <div className="flex flex-wrap gap-3 md:gap-4 lg:gap-6">
+              <Card className="flex-1 min-w-[150px] sm:min-w-[180px] md:min-w-[200px] lg:min-w-[250px] xl:min-w-[300px] bg-[#0d1526]/80 border-[#00f2ff]/10 shadow-[0_0_15px_rgba(0,242,255,0.05)]">
                 <CardHeader className="pb-2 flex flex-row items-center justify-between">
                   <CardTitle className="text-sm font-medium text-muted-foreground">Durée Totale</CardTitle>
                   <Clock className="w-4 h-4 text-[#00f2ff]" />
                 </CardHeader>
                 <CardContent><div className="text-xl md:text-2xl font-bold">{data.stats.totalDuration}</div></CardContent>
               </Card>
-              <Card className="flex-1 min-w-[200px] bg-[#0d1526]/80 border-[#ff00ff]/10">
+              <Card className="flex-1 min-w-[150px] sm:min-w-[180px] md:min-w-[200px] bg-[#0d1526]/80 border-[#ff00ff]/10">
                 <CardHeader className="pb-2 flex flex-row items-center justify-between">
                   <CardTitle className="text-sm font-medium text-muted-foreground">Manœuvres</CardTitle>
                   <Settings className="w-4 h-4 text-[#ff00ff]" />
@@ -105,7 +105,7 @@ export default function Home() {
                   <p className="text-[10px] text-muted-foreground">{data.stats.sailChanges} V / {data.stats.gybeTackCount} A</p>
                 </CardContent>
               </Card>
-              <Card className="flex-1 min-w-[200px] bg-[#0d1526]/80 border-[#00f2ff]/10">
+              <Card className="flex-1 min-w-[150px] sm:min-w-[180px] md:min-w-[200px] bg-[#0d1526]/80 border-[#00f2ff]/10">
                 <CardHeader className="pb-2 flex flex-row items-center justify-between">
                   <CardTitle className="text-sm font-medium text-muted-foreground">% Foils</CardTitle>
                   <Zap className="w-4 h-4 text-[#00f2ff]" />
@@ -115,14 +115,14 @@ export default function Home() {
                   <p className="text-[10px] text-muted-foreground">du temps à 100%</p>
                 </CardContent>
               </Card>
-              <Card className="flex-1 min-w-[200px] bg-[#0d1526]/80 border-[#3b82f6]/10">
+              <Card className="flex-1 min-w-[150px] sm:min-w-[180px] md:min-w-[200px] bg-[#0d1526]/80 border-[#3b82f6]/10">
                 <CardHeader className="pb-2 flex flex-row items-center justify-between">
                   <CardTitle className="text-sm font-medium text-muted-foreground">Gain Temps avec Foils</CardTitle>
                   <Zap className="w-4 h-4 text-[#3b82f6]" />
                 </CardHeader>
                 <CardContent><div className="text-xl md:text-2xl font-bold">{data.stats.totalFoilTimeSaved}</div></CardContent>
               </Card>
-              <Card className="flex-1 min-w-[200px] bg-[#0d1526]/80 border-[#ff00ff]/10 shadow-[0_0_15px_rgba(255,0,255,0.05)]">
+              <Card className="flex-1 min-w-[150px] sm:min-w-[180px] md:min-w-[200px] bg-[#0d1526]/80 border-[#ff00ff]/10 shadow-[0_0_15px_rgba(255,0,255,0.05)]">
                 <CardHeader className="pb-2 flex flex-row items-center justify-between">
                   <CardTitle className="text-sm font-medium text-muted-foreground">Voile Prioritaire</CardTitle>
                   <Star className="w-4 h-4 text-[#ff00ff]" />
@@ -140,12 +140,12 @@ export default function Home() {
               <h2 className="text-xl font-bold flex items-center gap-2 text-white px-2">
                 <ShieldCheck className="w-6 h-6 text-[#00f2ff]" /> Aide au choix de l'équipement
               </h2>
-              <div className="flex flex-wrap lg:flex-nowrap gap-6 md:gap-8">
+              <div className="flex flex-wrap gap-4 md:gap-6 lg:flex-nowrap">
                 <Card className="w-full lg:w-1/2 bg-[#0d1526]/80 border-white/5 overflow-hidden">
                   <CardHeader>
                     <CardTitle className="text-md flex items-center gap-2"><PieChart className="w-5 h-5 text-[#ff00ff]" /> Rentabilité des options</CardTitle>
                   </CardHeader>
-                  <CardContent className="p-0 sm:p-6 overflow-x-auto">
+                  <CardContent className="p-0 sm:p-4 md:p-6 overflow-x-auto">
                     <Table>
                       <TableHeader>
                         <TableRow className="border-white/5 hover:bg-transparent">
@@ -207,7 +207,7 @@ export default function Home() {
                     <CardTitle className="text-md flex items-center gap-2"><BarChart2 className="w-5 h-5 text-[#3b82f6]" /> Répartition du Temps (min)</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="h-[250px] md:h-[300px] w-full">
+                    <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart layout="vertical" data={data.stats.paidSailStats} margin={{ left: 10, right: 20 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" horizontal={false} />
@@ -234,7 +234,7 @@ export default function Home() {
               <CardHeader className="px-0 pt-0">
                 <CardTitle className="text-lg flex items-center gap-2"><BarChart2 className="w-5 h-5 text-[#00f2ff]" /> Vitesse & Vent</CardTitle>
               </CardHeader>
-              <div className="h-[250px] md:h-[300px] w-full mt-4">
+              <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full mt-4">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
@@ -253,8 +253,8 @@ export default function Home() {
           </motion.div>
         )}
 
-        <footer className="pt-8 pb-4 border-t border-white/5">
-          <p className="text-center text-[15px] md:text-xs text-muted-foreground/60 italic">
+        <footer className="pt-6 sm:pt-8 pb-3 sm:pb-4 border-t border-white/5">
+          <p className="text-center text-[12px] sm:text-[13px] md:text-xs text-muted-foreground/60 italic">
             Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact :{" "}
             <a 
               href="https://discord.gg/Y4Cu6CcHZf" 
@@ -275,10 +275,10 @@ export default function Home() {
         </footer>
 
         {data.stats && (
-          <div className="flex justify-center pb-8">
+          <div className="flex justify-center pb-4 sm:pb-6 md:pb-8">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="w-20 h-20 sm:w-24 sm:h-24 max-w-[150px] rounded-2xl overflow-hidden border-2 border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:border-[#00f2ff]/50 transition-all duration-300 hover:scale-105"
+              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 max-w-[120px] sm:max-w-[150px] rounded-2xl overflow-hidden border-2 border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:border-[#00f2ff]/50 transition-all duration-300 hover:scale-105"
               title="Retour en haut de page"
             >
               <img src={hpyLogo} alt="HPy Team Logo - Retour en haut" className="w-full h-full object-cover" />
