@@ -119,7 +119,7 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="space-y-4"
+            className="space-y-3 sm:space-y-4"
           >
             <div className="mx-auto w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-[#00f2ff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               {isDragActive ? (
@@ -128,7 +128,7 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
                 <Upload className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#00f2ff]" />
               )}
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1 sm:space-y-2">
               <p className="text-base sm:text-lg md:text-xl font-semibold text-white">
                 {isDragActive ? "Déposez le fichier" : "Déposez votre fichier GPX ici ou Cliquez sur Parcourir"}
               </p>

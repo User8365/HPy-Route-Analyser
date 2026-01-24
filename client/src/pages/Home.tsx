@@ -86,7 +86,7 @@ export default function Home() {
         <DropZone onFileSelect={handleFileSelect} isLoading={isLoading} />
 
         {data.stats && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8 md:mt-12 space-y-8 md:space-y-12">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-6 sm:mt-8 md:mt-12 space-y-6 sm:space-y-8 md:space-y-12">
             <div className="flex flex-wrap gap-3 md:gap-4 lg:gap-6">
               <Card className="flex-1 min-w-[150px] sm:min-w-[180px] md:min-w-[200px] lg:min-w-[250px] xl:min-w-[300px] bg-[#0d1526]/80 border-[#00f2ff]/10 shadow-[0_0_15px_rgba(0,242,255,0.05)]">
                 <CardHeader className="pb-2 flex flex-row items-center justify-between">
@@ -137,13 +137,13 @@ export default function Home() {
             </div>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold flex items-center gap-2 text-white px-2">
-                <ShieldCheck className="w-6 h-6 text-[#00f2ff]" /> Aide au choix de l'équipement
+              <h2 className="text-lg sm:text-xl font-bold flex items-center gap-2 text-white px-2">
+                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#00f2ff]" /> Aide au choix de l'équipement
               </h2>
-              <div className="flex flex-wrap gap-4 md:gap-6 lg:flex-nowrap">
-                <Card className="w-full lg:w-1/2 bg-[#0d1526]/80 border-white/5 overflow-hidden">
-                  <CardHeader>
-                    <CardTitle className="text-md flex items-center gap-2"><PieChart className="w-5 h-5 text-[#ff00ff]" /> Rentabilité des options</CardTitle>
+              <div className="flex flex-col gap-4 md:gap-6">
+                <Card className="w-full bg-[#0d1526]/80 border-white/5 overflow-hidden">
+                  <CardHeader className="pb-2 sm:pb-4">
+                    <CardTitle className="text-sm sm:text-md flex items-center gap-2"><PieChart className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff00ff]" /> Rentabilité des options</CardTitle>
                   </CardHeader>
                   <CardContent className="p-0 sm:p-4 md:p-6 overflow-x-auto">
                     <Table>
@@ -202,9 +202,9 @@ export default function Home() {
                   </CardContent>
                 </Card>
 
-                <Card className="w-full lg:w-1/2 bg-[#0d1526]/80 border-white/5">
-                  <CardHeader>
-                    <CardTitle className="text-md flex items-center gap-2"><BarChart2 className="w-5 h-5 text-[#3b82f6]" /> Répartition du Temps (min)</CardTitle>
+                <Card className="w-full bg-[#0d1526]/80 border-white/5">
+                  <CardHeader className="pb-2 sm:pb-4">
+                    <CardTitle className="text-sm sm:text-md flex items-center gap-2"><BarChart2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b82f6]" /> Répartition du Temps (min)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full">
@@ -230,9 +230,9 @@ export default function Home() {
               </div>
             </section>
 
-            <Card className="bg-[#0d1526]/80 border-white/5 p-4 md:p-6 overflow-hidden">
-              <CardHeader className="px-0 pt-0">
-                <CardTitle className="text-lg flex items-center gap-2"><BarChart2 className="w-5 h-5 text-[#00f2ff]" /> Vitesse & Vent</CardTitle>
+            <Card className="bg-[#0d1526]/80 border-white/5 p-3 sm:p-4 md:p-6 overflow-hidden">
+              <CardHeader className="px-0 pt-0 pb-2 sm:pb-4">
+                <CardTitle className="text-sm sm:text-lg flex items-center gap-2"><BarChart2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#00f2ff]" /> Vitesse & Vent</CardTitle>
               </CardHeader>
               <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full mt-4">
                 <ResponsiveContainer width="100%" height="100%">
