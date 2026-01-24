@@ -61,8 +61,8 @@ export default function Home() {
   const prioritySail = data.stats ? getPrioritySail(data.stats) : null;
 
   return (
-    <div className="min-h-screen bg-[#050b18] text-[#e2e8f0] font-sans overflow-x-hidden">
-      <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
+    <div className="min-h-screen flex flex-col bg-[#050b18] text-[#e2e8f0] font-sans overflow-x-hidden">
+      <main className="flex-1 max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
         <header className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12 text-center sm:text-left">
           <div className="w-20 h-20 sm:w-24 sm:h-24 max-w-[150px] rounded-2xl overflow-hidden border-2 border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.2)]">
             <img src={hpyLogo} alt="HPy Team Logo" className="w-full h-full object-cover" />
