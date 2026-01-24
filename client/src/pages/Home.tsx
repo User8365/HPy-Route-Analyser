@@ -32,7 +32,11 @@ export default function Home() {
         });
         
         setData({ points: result.points, stats: result.stats });
-        toast({ title: "Analyse terminée", description: "Le fichier GPX a été traité avec succès." });
+        toast({ 
+          title: "Analyse terminée", 
+          description: "Le fichier GPX a été traité avec succès.",
+          className: "bg-[#00f2ff]/10 border-[#00f2ff]/20 text-white"
+        });
       } catch (error) {
         console.error("Erreur d'analyse:", error);
         toast({ variant: "destructive", title: "Échec", description: "Impossible d'analyser le fichier. Assurez-vous que le fichier est bien de type GPX et qu'il est bien issu de VRzen" });
