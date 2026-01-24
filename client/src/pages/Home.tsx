@@ -68,9 +68,15 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-[#050b18] text-[#e2e8f0] font-sans overflow-x-hidden">
       <main className="flex-1 max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
         <header className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12 text-center sm:text-left">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 max-w-[150px] rounded-2xl overflow-hidden border-2 border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.2)]">
-            <img src={hpyLogo} alt="HPy Team Logo" className="w-full h-full object-cover" />
-          </div>
+          <a 
+            href="https://discord.gg/Y4Cu6CcHZf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-20 h-20 sm:w-24 sm:h-24 max-w-[150px] rounded-2xl overflow-hidden border-2 border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:border-[#00f2ff]/60 hover:shadow-[0_0_30px_rgba(0,242,255,0.4)] transition-all duration-300 ease-out hover:scale-105 hover:rotate-3 cursor-pointer"
+            title="Rejoindre le Discord HPy Team"
+          >
+            <img src={hpyLogo} alt="HPy Team Logo - Rejoindre notre Discord" className="w-full h-full object-cover" />
+          </a>
           <div>
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">HPy - Analyseur de course</h1>
             <p className="text-sm md:text-base text-muted-foreground">Outil d'analyse pour Virtual Regatta</p>
@@ -249,7 +255,16 @@ export default function Home() {
 
         <footer className="pt-8 pb-4 border-t border-white/5">
           <p className="text-center text-[15px] md:text-xs text-muted-foreground/60 italic">
-            Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact : Discord HPy ou{" "}
+            Outil optimisé pour les fichiers GPX issus uniquement de VRzen ! Développé par l'équipe HPy Team. Contact :{" "}
+            <a 
+              href="https://discord.gg/Y4Cu6CcHZf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#00f2ff] hover:text-[#00f2ff]/80 transition-colors underline decoration-[#00f2ff]/50 hover:decoration-[#00f2ff]/80"
+            >
+              Discord HPy
+            </a>{" "}
+            ou{" "}
             <a 
               href="mailto:team.hpy.vr@gmail.com" 
               className="text-[#00f2ff] hover:text-[#00f2ff]/80 transition-colors underline decoration-[#00f2ff]/50 hover:decoration-[#00f2ff]/80"
