@@ -149,9 +149,9 @@ export default function Home() {
                     <Table>
                       <TableHeader>
                         <TableRow className="border-white/5 hover:bg-transparent">
-                          <TableHead className="text-muted-foreground">Nom de Voile</TableHead>
-                          <TableHead className="text-muted-foreground text-center">% Utilisation</TableHead>
-                          <TableHead className="text-muted-foreground text-right">% Temps sous Foils</TableHead>
+                          <TableHead className="text-muted-foreground text-xs sm:text-sm whitespace-nowrap">Nom de Voile</TableHead>
+                          <TableHead className="text-muted-foreground text-center text-xs sm:text-sm whitespace-nowrap">% Utilisation</TableHead>
+                          <TableHead className="text-muted-foreground text-right text-xs sm:text-sm whitespace-nowrap">% Temps sous Foils</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -177,21 +177,21 @@ export default function Home() {
                                 sail.usagePercent === 0 ? "opacity-30 grayscale" : "bg-white/[0.02]"
                               )}
                             >
-                              <TableCell className={cn("font-medium", sail.usagePercent > 0 ? "text-white" : "text-foreground")}>
-                                <div className="text-sm">{sail.name}</div>
-                                <div className="text-[9px] text-muted-foreground uppercase tracking-tighter opacity-70">
+                              <TableCell className={cn("font-medium text-xs sm:text-sm whitespace-nowrap", sail.usagePercent > 0 ? "text-white" : "text-foreground")}>
+                                <div className="text-xs sm:text-sm">{sail.name}</div>
+                                <div className="text-[8px] sm:text-[9px] text-muted-foreground uppercase tracking-tighter opacity-70">
                                   {sail.category}
                                 </div>
                               </TableCell>
-                              <TableCell className="text-center">
+                              <TableCell className="text-center text-xs sm:text-sm whitespace-nowrap">
                                 <span className={cn(
-                                  "px-2 py-0.5 rounded text-[10px] font-bold", 
+                                  "px-1 sm:px-2 py-0.5 rounded text-[8px] sm:text-[10px] font-bold", 
                                   sail.usagePercent > 0 ? "bg-[#00f2ff]/20 text-[#00f2ff]" : "bg-white/5 text-muted-foreground"
                                 )}>
                                   {sail.usagePercent}%
                                 </span>
                               </TableCell>
-                              <TableCell className={cn("text-right font-mono text-xs", sail.foilTimePercent > 0 ? "text-[#ff00ff]" : "text-muted-foreground")}>
+                              <TableCell className={cn("text-right font-mono text-xs sm:text-sm whitespace-nowrap", sail.foilTimePercent > 0 ? "text-[#ff00ff]" : "text-muted-foreground")}>
                                 {sail.foilTimePercent}%
                               </TableCell>
                             </TableRow>
@@ -209,10 +209,10 @@ export default function Home() {
                   <CardContent>
                     <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full">
                       <ResponsiveContainer width="100%" height="100%">
-                        <BarChart layout="vertical" data={data.stats.paidSailStats} margin={{ left: 10, right: 20 }}>
+                        <BarChart layout="vertical" data={data.stats.paidSailStats} margin={{ left: 5, right: 10, top: 10, bottom: 10 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" horizontal={false} />
-                          <XAxis type="number" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
-                          <YAxis dataKey="name" type="category" stroke="#e2e8f0" fontSize={10} tickLine={false} axisLine={false} width={80} />
+                          <XAxis type="number" stroke="#64748b" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} />
+                          <YAxis dataKey="name" type="category" stroke="#e2e8f0" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} width={60} smWidth={80} />
                           <Tooltip 
                             contentStyle={{ backgroundColor: '#0d1526', borderColor: '#ffffff10' }} 
                             cursor={{ fill: '#ffffff05' }}
@@ -238,10 +238,10 @@ export default function Home() {
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
-                    <XAxis dataKey="time" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
-                    <YAxis stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
+                    <XAxis dataKey="time" stroke="#64748b" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} />
+                    <YAxis stroke="#64748b" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} />
                     <Tooltip contentStyle={{ backgroundColor: '#0d1526', borderColor: '#ffffff10' }} />
-                    <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
+                    <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '10px' }} />
                     <Line type="monotone" dataKey="SOG" stroke="#00f2ff" strokeWidth={3} dot={false} name="Vitesse (SOG)" />
                     <Line type="monotone" dataKey="TWS" stroke="#ff00ff" strokeWidth={2} dot={false} strokeDasharray="4 4" name="Vent (TWS)" />
                   </LineChart>

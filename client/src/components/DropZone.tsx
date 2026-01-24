@@ -79,7 +79,7 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
       {...getRootProps()}
       className={cn(
         "relative group cursor-pointer transition-all duration-300",
-        "rounded-3xl border-2 border-dashed p-10 md:p-16 text-center",
+        "rounded-3xl border-2 border-dashed p-6 sm:p-8 md:p-12 lg:p-16 text-center",
         isDragActive 
           ? "border-[#00f2ff] bg-[#00f2ff]/5 scale-[0.99]" 
           : "border-white/10 hover:border-[#00f2ff]/50 bg-white/[0.02] hover:bg-white/[0.04]",
@@ -109,9 +109,9 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
             exit={{ opacity: 0, scale: 0.9 }}
             className="flex flex-col items-center gap-4"
           >
-            <Loader2 className="w-12 h-12 text-[#00f2ff] animate-spin" />
-            <p className="text-lg font-medium text-white">Analyse en cours...</p>
-            <p className="text-sm text-muted-foreground">Extraction des données de performance</p>
+            <Loader2 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#00f2ff] animate-spin" />
+            <p className="text-base sm:text-lg font-medium text-white">Analyse en cours...</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Extraction des données de performance</p>
           </motion.div>
         ) : (
           <motion.div
@@ -121,18 +121,18 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
             exit={{ opacity: 0, y: -10 }}
             className="space-y-4"
           >
-            <div className="mx-auto w-16 h-16 rounded-full bg-[#00f2ff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="mx-auto w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-[#00f2ff]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               {isDragActive ? (
-                <FileUp className="w-8 h-8 text-[#00f2ff] animate-bounce" />
+                <FileUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#00f2ff] animate-bounce" />
               ) : (
-                <Upload className="w-8 h-8 text-[#00f2ff]" />
+                <Upload className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#00f2ff]" />
               )}
             </div>
             <div className="space-y-2">
-              <p className="text-lg md:text-xl font-semibold text-white">
+              <p className="text-base sm:text-lg md:text-xl font-semibold text-white">
                 {isDragActive ? "Déposez le fichier" : "Déposez votre fichier GPX ici ou Cliquez sur Parcourir"}
               </p>
-              <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-xs sm:max-w-sm mx-auto">
                 Supporte les exports VRzen.
               </p>
             </div>
@@ -150,7 +150,7 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
                 </motion.div>
               )}
             </AnimatePresence>
-            <div className="pt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground/60">
+            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-muted-foreground/60">
               <span className="px-2 py-1 rounded border border-white/5 bg-white/[0.02]">GPX ONLY</span>
               <span className="px-2 py-1 rounded border border-white/5 bg-white/[0.02]">MAX 10MB</span>
             </div>
