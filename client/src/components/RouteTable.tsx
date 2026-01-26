@@ -38,12 +38,12 @@ export function RouteTable({ points }: RouteTableProps) {
           <Table>
             <TableHeader className="bg-white/[0.02]">
               <TableRow className="border-white/5 hover:bg-transparent">
-                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">HDG</TableHead>
-                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">TWA</TableHead>
-                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">Voile</TableHead>
-                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">SOG</TableHead>
-                <TableHead className="text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">Statut Foils</TableHead>
-                <TableHead className="text-right text-muted-foreground font-semibold text-xs sm:text-sm whitespace-nowrap">TWS</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">HDG</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">TWA</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">Voile</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">SOG</TableHead>
+                <TableHead className="text-muted-foreground font-semibold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">Statut Foils</TableHead>
+                <TableHead className="text-right text-muted-foreground font-semibold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">TWS</TableHead>
               </TableRow>
             </TableHeader>
           <TableBody>
@@ -55,26 +55,26 @@ export function RouteTable({ points }: RouteTableProps) {
                   point.isFoils100 && "bg-[#00f2ff]/5 border-l-2 border-l-[#00f2ff]"
                 )}
               >
-                <TableCell className="font-medium text-foreground text-xs sm:text-sm whitespace-nowrap">{point.hdg}°</TableCell>
-                <TableCell className={cn("text-xs sm:text-sm whitespace-nowrap", parseInt(point.twa) < 0 ? "text-[#ff00ff]" : "text-[#00f2ff]")}>
+                <TableCell className="font-medium text-foreground text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">{point.hdg}°</TableCell>
+                <TableCell className={cn("text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2", parseInt(point.twa) < 0 ? "text-[#ff00ff]" : "text-[#00f2ff]")}>
                   {point.twa}°
                 </TableCell>
-                <TableCell className="text-xs sm:text-sm whitespace-nowrap">
-                  <span className="px-1 sm:px-2 py-0.5 sm:py-1 rounded-md bg-white/5 text-[9px] sm:text-[10px] text-muted-foreground border border-white/10 uppercase tracking-wider">
+                <TableCell className="text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">
+                  <span className="px-1 sm:px-2 py-0.5 sm:py-1 rounded-md bg-white/5 text-[8px] sm:text-[10px] text-muted-foreground border border-white/10 uppercase tracking-wider">
                     {point.sail}
                   </span>
                 </TableCell>
-                <TableCell className="text-[#3b82f6] font-bold text-xs sm:text-sm whitespace-nowrap">{point.sog} kt</TableCell>
-                <TableCell className="text-xs sm:text-sm whitespace-nowrap">
+                <TableCell className="text-[#3b82f6] font-bold text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">{point.sog} kt</TableCell>
+                <TableCell className="text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">
                   {point.isFoils100 ? (
-                    <span className="text-[#00f2ff] flex items-center gap-1 font-bold text-xs sm:text-sm">🚀 100%</span>
+                    <span className="text-[#00f2ff] flex items-center gap-1 font-bold text-[10px] sm:text-sm">🚀 100%</span>
                   ) : point.isFoilsActive ? (
-                    <span className="text-[#3b82f6] flex items-center gap-1 text-xs sm:text-sm">✅ Actif</span>
+                    <span className="text-[#3b82f6] flex items-center gap-1 text-[10px] sm:text-sm">✅ Actif</span>
                   ) : (
-                    <span className="text-muted-foreground/50 flex items-center gap-1 italic text-[10px] sm:text-xs">❌ Inactif</span>
+                    <span className="text-muted-foreground/50 flex items-center gap-1 italic text-[9px] sm:text-xs">❌ Inactif</span>
                   )}
                 </TableCell>
-                <TableCell className="text-right text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{point.tws} kt</TableCell>
+                <TableCell className="text-right text-muted-foreground text-[10px] sm:text-sm whitespace-nowrap px-1 sm:px-3 py-2">{point.tws} kt</TableCell>
               </TableRow>
             ))}
           </TableBody>
