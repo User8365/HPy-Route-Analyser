@@ -47,13 +47,49 @@ export default function Home() {
     reader.readAsText(file);
   };
 
-  const chartData = data.points.map(p => ({
-    time: new Date(p.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+  const chartData = data.points.map((p, index) => ({
+    time: new Date(p.time).toLocaleTimeString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }),
     SOG: p.sog,
-    TWS: p.tws
-  })).filter((_, i) => i % 5 === 0);
+    TWS: p.tws,
+    sail: p.sail,
+    isSailChange: index > 0 && p.sail !== data.points[index - 1].sail
+  })).filter((_, i) => {
+    const samplingRate = window.innerWidth < 768 ? 4 : 2;
+    return i % samplingRate === 0;
+  });
 
   const barColors = ['#00f2ff', '#00f2ff', '#ff00ff', '#ff00ff', '#3b82f6'];
+
+  const SailChangeDot = (props: any) => {
+    const { cx, cy, payload } = props;
+    if (!payload.isSailChange) return null;
+    
+    let dotColor = '#00f2ff'; // Cyan par défaut (voiles lourdes)
+    const sail = payload.sail?.toUpperCase();
+    
+    if (sail === 'CODE 0') {
+      dotColor = '#fbbf24'; // Jaune
+    } else if (sail === 'SPI LEGER' || sail === 'GENOIS LEGER') {
+      dotColor = '#ff00ff'; // Magenta
+    } else if (sail === 'TRINQUETTE' || sail === 'SPI LOURD') {
+      dotColor = '#00f2ff'; // Cyan
+    }
+    
+    return (
+      <circle 
+        cx={cx} 
+        cy={cy} 
+        r={5} 
+        fill={dotColor} 
+        stroke={dotColor}
+        strokeWidth={2}
+        style={{ 
+          filter: `drop-shadow(0 0 8px ${dotColor})`,
+          opacity: 0.9
+        }}
+      />
+    );
+  };
 
   const getPrioritySail = (stats: AnalysisStats) => {
     if (!stats.paidSailStats || stats.paidSailStats.length === 0) return null;
@@ -218,9 +254,13 @@ export default function Home() {
                             cursor={{ fill: '#ffffff05' }}
                           />
                           <Bar dataKey="totalTimeMinutes" name="Temps (min)" radius={[0, 4, 4, 0]}>
-                            {data.stats.paidSailStats.map((_, index) => (
-                              <Cell key={`cell-${index}`} fill={barColors[index % barColors.length]} fillOpacity={0.8} />
-                            ))}
+                            {data.stats.paidSailStats.map((sail, index) => {
+                              const isCode0 = sail.name && sail.name.trim().toLowerCase() === "code 0";
+                              const color = isCode0 ? "#fbbf24" : barColors[index % barColors.length];
+                              return (
+                                <Cell key={`cell-${index}`} fill={color} fillOpacity={0.8} />
+                              );
+                            })}
                           </Bar>
                         </BarChart>
                       </ResponsiveContainer>
@@ -238,12 +278,72 @@ export default function Home() {
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
-                    <XAxis dataKey="time" stroke="#64748b" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} />
+                    <XAxis 
+                      dataKey="time" 
+                      stroke="#64748b" 
+                      fontSize={8} 
+                      smFontSize={10} 
+                      tickLine={false} 
+                      axisLine={false} 
+                      minTickGap={50}
+                    />
                     <YAxis stroke="#64748b" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} />
-                    <Tooltip contentStyle={{ backgroundColor: '#0d1526', borderColor: '#ffffff10' }} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#0d1526', borderColor: '#ffffff10' }}
+                      content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                          const data = payload[0].payload;
+                          
+                          let sailColor = '#00f2ff'; // Cyan par défaut
+                          const sail = data.sail?.toUpperCase();
+                          
+                          if (sail === 'CODE 0') {
+                            sailColor = '#fbbf24'; // Jaune
+                          } else if (sail === 'SPI LEGER' || sail === 'GENOIS LEGER') {
+                            sailColor = '#ff00ff'; // Magenta
+                          } else if (sail === 'TRINQUETTE' || sail === 'SPI LOURD') {
+                            sailColor = '#00f2ff'; // Cyan
+                          }
+                          
+                          return (
+                            <div className="bg-[#0d1526] border border-white/10 rounded-lg p-3">
+                              <div 
+                                className="text-sm font-bold mb-2" 
+                                style={{ color: sailColor }}
+                              >
+                                {data.sail}
+                              </div>
+                              <div className="space-y-1">
+                                <div className="text-xs text-[#00f2ff]">Vitesse: {data.SOG} kt</div>
+                                <div className="text-xs text-[#ff00ff]">Vent: {data.TWS} kt</div>
+                                <div className="text-xs text-muted-foreground">{data.time}</div>
+                              </div>
+                            </div>
+                          );
+                        }
+                        return null;
+                      }}
+                    />
                     <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '10px' }} />
-                    <Line type="monotone" dataKey="SOG" stroke="#00f2ff" strokeWidth={3} dot={false} name="Vitesse (SOG)" />
-                    <Line type="monotone" dataKey="TWS" stroke="#ff00ff" strokeWidth={2} dot={false} strokeDasharray="4 4" name="Vent (TWS)" />
+                    <Line 
+                      type="monotone" 
+                      dataKey="SOG" 
+                      stroke="#00f2ff" 
+                      strokeWidth={3} 
+                      dot={false}
+                      isAnimationActive={false}
+                      name="Vitesse (SOG)" 
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="TWS" 
+                      stroke="#ff00ff" 
+                      strokeWidth={2} 
+                      dot={false} 
+                      strokeDasharray="4 4" 
+                      isAnimationActive={false}
+                      name="Vent (TWS)" 
+                    />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
