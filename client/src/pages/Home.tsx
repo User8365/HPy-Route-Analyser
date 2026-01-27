@@ -206,7 +206,6 @@ export default function Home() {
                           } else {
                             categoryColor = "border-l-[#3b82f6]";
                           }
-                          console.log(`Sail: "${sail.name}", Category: "${sail.category}", isCode0: ${isCode0}, Color: ${categoryColor}`);
                           return (
                             <TableRow 
                               key={i} 
@@ -227,14 +226,19 @@ export default function Home() {
                               </TableCell>
                               <TableCell className="text-center text-xs sm:text-sm whitespace-nowrap">
                                 <span className={cn(
-                                  "px-1 sm:px-2 py-0.5 rounded text-[8px] sm:text-[10px] font-bold", 
+                                  "px-1 sm:px-2 py-0.5 rounded font-bold text-xs sm:text-sm", 
                                   sail.usagePercent > 0 ? "bg-[#00f2ff]/20 text-[#00f2ff]" : "bg-white/5 text-muted-foreground"
                                 )}>
                                   {sail.usagePercent}%
                                 </span>
                               </TableCell>
-                              <TableCell className={cn("text-right font-mono text-xs sm:text-sm whitespace-nowrap", sail.foilTimePercent > 0 ? "text-[#ff00ff]" : "text-muted-foreground")}>
-                                {sail.foilTimePercent}%
+                              <TableCell className="text-center text-xs sm:text-sm whitespace-nowrap">
+                                <span className={cn(
+                                  "px-1 sm:px-2 py-0.5 rounded font-bold text-xs sm:text-sm", 
+                                  sail.foilTimePercent > 0 ? "bg-[#ff00ff]/20 text-[#ff00ff]" : "bg-white/5 text-muted-foreground"
+                                )}>
+                                  {sail.foilTimePercent}%
+                                </span>
                               </TableCell>
                             </TableRow>
                           );
@@ -257,6 +261,7 @@ export default function Home() {
                           <YAxis dataKey="name" type="category" stroke="#e2e8f0" fontSize={8} smFontSize={10} tickLine={false} axisLine={false} width={60} smWidth={80} />
                           <Tooltip 
                             contentStyle={{ backgroundColor: '#0d1526', borderColor: '#ffffff10' }} 
+                            itemStyle={{ color: '#e2e8f0' }}
                             cursor={{ fill: '#ffffff05' }}
                           />
                           <Bar dataKey="totalTimeMinutes" name="Temps (min)" radius={[0, 4, 4, 0]}>
