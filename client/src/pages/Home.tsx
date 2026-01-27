@@ -192,10 +192,13 @@ export default function Home() {
                       </TableHeader>
                       <TableBody>
                         {data.stats.paidSailStats.map((sail: any, i) => {
-                          const isCode0 = sail.name && sail.name.trim().toLowerCase() === "code 0";
+                          const sailName = (sail.name || "").trim().toLowerCase();
+                          const sailCategory = (sail.category || "").trim().toUpperCase();
+                          const isCode0 = sailName.includes("code") || sailCategory.includes("CODE");
+                          
                           let categoryColor;
                           if (isCode0) {
-                            categoryColor = "border-l-[#fbbf24]";
+                            categoryColor = "border-l-[#fbbf24]"; // Jaune - Priorité absolue
                           } else if (i < 2) {
                             categoryColor = "border-l-[#00f2ff]";
                           } else if (i < 4) {
@@ -203,17 +206,20 @@ export default function Home() {
                           } else {
                             categoryColor = "border-l-[#3b82f6]";
                           }
-                          console.log(`Sail: "${sail.name}", isCode0: ${isCode0}, color: ${categoryColor}`);
+                          console.log(`Sail: "${sail.name}", Category: "${sail.category}", isCode0: ${isCode0}, Color: ${categoryColor}`);
                           return (
                             <TableRow 
                               key={i} 
                               className={cn(
-                                "border-white/5 transition-colors border-l-2",
-                                categoryColor,
-                                sail.usagePercent === 0 ? "opacity-30 grayscale" : "bg-white/[0.02]"
+                                "border-white/5 transition-colors overflow-hidden",
+                                (sail.usagePercent === 0 && !isCode0) ? "opacity-30 grayscale" : "bg-white/[0.02]"
                               )}
                             >
-                              <TableCell className={cn("font-medium text-xs sm:text-sm whitespace-nowrap", sail.usagePercent > 0 ? "text-white" : "text-foreground")}>
+                              <TableCell className={cn(
+                                "font-medium text-xs sm:text-sm whitespace-nowrap border-l-4",
+                                categoryColor,
+                                sail.usagePercent > 0 ? "text-white" : "text-foreground"
+                              )}>
                                 <div className="text-xs sm:text-sm">{sail.name}</div>
                                 <div className="text-[8px] sm:text-[9px] text-muted-foreground uppercase tracking-tighter opacity-70">
                                   {sail.category}
